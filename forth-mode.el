@@ -20,7 +20,7 @@
 (defvar forth-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c C-r") 'forth-eval-region)
-    (define-key map (kbd "C-c C-l") 'forth-load-file)
+    (define-key map (kbd "C-c C-c") 'forth-load-file)
     (define-key map (kbd "C-c C-s") 'forth-see)
     (define-key map (kbd "C-M-x") 'forth-eval-defun)
     (define-key map (kbd "C-c C-k") 'forth-kill)
@@ -164,7 +164,7 @@
 	   "\\s-2?constant\\s-+\\(\\(\\sw\\|\\s_\\)+\\)" 1))))
 
 ;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.\\(f\\|fs\\|fth\\|4th\\)\\'" . forth-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(f\\|ff\\|boot\\|fs\\|fth\\|4th\\)\\'" . forth-mode))
 
 (unless (fboundp 'with-eval-after-load)
   (defmacro with-eval-after-load (lib &rest forms)
@@ -173,6 +173,8 @@
 (with-eval-after-load "speedbar"
   (when (fboundp 'speedbar-add-supported-extension)
     (speedbar-add-supported-extension ".f")
+    (speedbar-add-supported-extension ."ff")
+    (speedbar-add-supported-extensios ."boot")
     (speedbar-add-supported-extension ".fs")
     (speedbar-add-supported-extension ".fth")
     (speedbar-add-supported-extension ".4th")))
